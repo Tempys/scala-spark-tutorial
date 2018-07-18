@@ -22,12 +22,22 @@ object SameHostsProblem {
        Make sure the head lines are removed in the resulting RDD.
      */
 
-
     var conf = new SparkConf().setAppName("hosts").setMaster("local[*]")
     var context = new SparkContext(conf)
 
+    var julyFirstLogs = context.textFile("in/nasa_19950701.tsv")
+    val augustFirstLogs = context.textFile("in/nasa_19950801.tsv")
 
-    var julyData = context
+    val julyFirstHosts = julyFirstLogs.map(line => line.split("\t")(0))
+    val augustFirstHosts = augustFirstLogs.map(line => line.split("\t")(0))
+
+    val intersection = julyFirstHosts.intersection(augustFirstHosts)
+
+    val cleanedHostIntersection = intersection.filter(host => host != "host")
+    cleanedHostIntersection.saveAsTextFile("out/nasa_logs_same_hosts.csv")
+
+
+
 
   }
 }
