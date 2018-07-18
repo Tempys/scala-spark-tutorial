@@ -1,5 +1,7 @@
 package com.sparkTutorial.rdd.nasaApacheWebLogs
 
+import org.apache.spark.{SparkConf, SparkContext}
+
 object SameHostsProblem {
 
   def main(args: Array[String]) {
@@ -19,5 +21,13 @@ object SameHostsProblem {
 
        Make sure the head lines are removed in the resulting RDD.
      */
+
+
+    var conf = new SparkConf().setAppName("hosts").setMaster("local[*]")
+    var context = new SparkContext(conf)
+
+
+    var julyData = context
+
   }
 }

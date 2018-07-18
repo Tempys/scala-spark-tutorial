@@ -14,6 +14,7 @@ object AirportsInUsaSolution {
     val airportsInUSA = airports.filter(line => line.split(Utils.COMMA_DELIMITER)(3) == "\"United States\"")
 
     val airportsNameAndCityNames = airportsInUSA.map(line => {
+      print(line)
       val splits = line.split(Utils.COMMA_DELIMITER)
       splits(1) + ", " + splits(2)
     })
