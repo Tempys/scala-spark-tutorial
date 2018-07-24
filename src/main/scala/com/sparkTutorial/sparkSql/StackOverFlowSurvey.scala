@@ -17,9 +17,9 @@ object StackOverFlowSurvey {
     val dataFrameReader = session.read
 
     val responses = dataFrameReader
-      .option("header", "true")
-      .option("inferSchema", value = true)
-      .csv("in/2016-stack-overflow-survey-responses.csv")
+                                   .option("header", "true")
+                                   .option("inferSchema", value = true)
+                                   .csv("in/2016-stack-overflow-survey-responses.csv")
 
     System.out.println("=== Print out schema ===")
     responses.printSchema()
